@@ -4,28 +4,17 @@ import warnings
 import re
 
 from Bio import Entrez
-from nltk import sent_tokenize, word_tokenize
 
 warnings.filterwarnings("ignore")
 
-
-
-
 ###Constants
-# here are defined categories for which we want articles
-categories = ['cancérologie', 'cardiologie', 'gastro',
-              'diabétologie', 'nutrition', 'infectiologie',
-              'gyneco-repro-urologie', 'pneumologie', 'dermatologie',
-              'industrie de santé', 'ophtalmologie']
-
-
 
 
 ###Main function
 def main_loading(run_loading=False):
     if run_loading:
         # call the function collect_data to get the abstracts
-        abstracts = collect_data(categories)
+        abstracts = pd.read_csv("arxiv-paper-titles-data-abstracts.csv")
 
         # standardize abstracts
         abstracts['text_standardized'] = abstracts.apply(lambda row: concat_structured_abstracts(row['text'])
