@@ -40,7 +40,7 @@ def main_arxivscrapper(run_loading=False):
                         author = entry.author
                         abstract = entry.summary.replace('\n', " ")
                         file_writer.writerow([unidecode(article_id), unidecode(title), unidecode(published),
-                                              unidecode(author), unidecode(abstract), str(0)])
+                                              unidecode(author), unidecode(abstract)])
                         num = num + 1
                     print(str(num) + " article : " + title)
                 print('%d titles saved from Arxiv %s.' % (num, query))
