@@ -1,0 +1,13 @@
+# cat requirements.txt
+
+pandas==0.25.1
+numpy
+random
+sklearn
+scipy
+gensim
+re
+string
+collections
+nltk
+fuzzywuzzy
