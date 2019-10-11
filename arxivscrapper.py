@@ -4,9 +4,6 @@ Created on Thu Mar 28 13:50:39 2019
 @author: liangkc
 """
 
-# you need to install Biopython:
-# pip install biopython
-
 # Full discussion:
 # https://marcobonzanini.wordpress.com/2015/01/12/searching-pubmed-with-python/
 
@@ -23,7 +20,7 @@ def main_arxivscrapper(run_loading=False):
         # ARXIV QUERY
         queries = ['cat:econ.EM', 'cat:econ.TH', 'econ.GN', 'q-fin.ST', 'q-fin.TR', 'q-fin.EC']
         start = time.time()
-        with open('arxiv-paper-titles-data-abstracts.csv', mode='w', newline="") as data_file:
+        with open('./data/arxiv-paper-titles-data-abstracts.csv', mode='w', newline="") as data_file:
             file_writer = csv.writer(data_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             for query in queries:
                 print("Category in process : " + query)
@@ -35,10 +32,10 @@ def main_arxivscrapper(run_loading=False):
                     for i in range(len(feed.entries)):
                         entry = feed.entries[i]
                         article_id = entry.id
-                        title = entry.title.replace('\n', " ")
+                        title = entry.title.replace('\n', " ").replace(';',' ')
                         published = entry.published
                         author = entry.author
-                        abstract = entry.summary.replace('\n', " ")
+                        abstract = entry.summary.replace('\n', " ").replace(';', ' ')
                         file_writer.writerow([unidecode(article_id), unidecode(title), unidecode(published),
                                               unidecode(author), unidecode(abstract)])
                         num = num + 1
